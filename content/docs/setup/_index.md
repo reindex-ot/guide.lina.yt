@@ -25,7 +25,7 @@ Otherwise, scroll down to the Fedora Media Writer section, and choose the downlo
 Reboot your computer with the USB device plugged in to boot into Fedora KDE (you might need to go into your UEFI setup screen and explicitly choose the USB drive as a boot device for it to work).
 
 > [!TIP]
-> While you're visiting your UEFI setup / BIOS, you might want to disable Secure Boot if you don't need it for Windows. This will make your life easier later, especially if you need to install the NVidia drivers.
+> While you're visiting your UEFI setup / BIOS, you might want to disable Secure Boot if you don't need it for Windows. This will make your life easier later, especially if you need to install the NVIDIA drivers.
 
 The image you downloaded is a "Live" image, which will directly boot into a Fedora KDE environment where you can explore and see how the OS works before installing it (any changes you make and any files you save won't persist). Click the big install button to begin the installation, and follow the prompts which should be self-explanatory. Pay particular attention to the question about storage, as you can choose to overwrite an entire HDD/SSD drive or instead resize an existing OS to make space and have both installed at the same time (dual-boot).
 
@@ -108,7 +108,7 @@ Now that you have enabled RPM Fusion, let's install some codecs that will make y
 
 ## Drivers
 
-In general, Fedora Linux ships with drivers for most of your hardware out of the box. However, there are two things you might need to install manually: **Hardware video decoding/encoding drivers** (due to the software patent mess), and the **NVidia GPU drivers** (for Nvidia GPU users). Choose the section appropriate for your GPU.
+In general, Fedora Linux ships with drivers for most of your hardware out of the box. However, there are two things you might need to install manually: **Hardware video decoding/encoding drivers** (due to the software patent mess), and the **NVIDIA GPU drivers** (for NVIDIA GPU users). Choose the section appropriate for your GPU.
 
 > [!TIP]
 > For more information, see the  [RPM Fusion](https://rpmfusion.org/Howto/Multimedia) documentation and the [Fedora Project](https://fedoraproject.org/wiki/Hardware_Video_Acceleration) documentation on this subject.
@@ -146,23 +146,23 @@ If you plan to use Steam or any Windows software, you'll also want the 32-bit ve
 
     sudo dnf swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
 
-### NVidia GPU drivers
+### NVIDIA GPU drivers
 
 Fedora Linux ships with the open-source Nouveau/NVK drivers. These drivers are recommended for day to day tasks and actually integrate better with Linux in many cases, including tasks related to streaming! However, they might not provide the best compatibility/performance, and they also do not support hardware encoding.
 
 > [!WARNING]
-> If your system has hybrid graphics (e.g. an Intel or AMD CPU with integrated graphics) alongside NVidia, I highly recommend disabling them in your UEFI setup (BIOS) and using the NVidia card exclusively, if possible, unless you really know what you're doing. Hybrid graphics can be quite confusing as you might have to manually select which GPU is used by individual apps, and it also works particularly poorly with the NVidia proprietary drivers due to various bugs and missing features in those drivers.
+> If your system has hybrid graphics (e.g. an Intel or AMD CPU with integrated graphics) alongside NVIDIA, I highly recommend disabling them in your UEFI setup (BIOS) and using the NVIDIA card exclusively, if possible, unless you really know what you're doing. Hybrid graphics can be quite confusing as you might have to manually select which GPU is used by individual apps, and it also works particularly poorly with the NVIDIA proprietary drivers due to various bugs and missing features in those drivers.
 
 > [!TIP]
 > This is a quick overview for the most common case. Check the [RPM Fusion NVIDIA](https://rpmfusion.org/Howto/NVIDIA) page for more detailed information and steps.
 
-You will need a **2014 or newer** GPU (Nvidia Maxwell or newer). If you have an older GPU, you should stick to the open source Nouveau drivers, as the proprietary drivers no longer support these GPUs (and you will run into a world of pain if you try to use older drivers, since they won't support modern Linux features).
+You will need a **2014 or newer** GPU (NVIDIA Maxwell or newer). If you have an older GPU, you should stick to the open source Nouveau drivers, as the proprietary drivers no longer support these GPUs (and you will run into a world of pain if you try to use older drivers, since they won't support modern Linux features).
 
 If you have Turing or newer GPU (Geforce GTX 16xx or any RTX):
 
     sudo dnf install akmod-nvidia
 
-If you have an older Maxwell through Volta GPU (Geforce GT/GTX 7xx through 1xxx or Titan V), then the last supported version of the NVidia driver is 580. At the time of this writing, this is just `akmod-nvidia`, but it will be split `akmod-nvidia-580xx` very soon. Try installing that one first:
+If you have an older Maxwell through Volta GPU (Geforce GT/GTX 7xx through 1xxx or Titan V), then the last supported version of the NVIDIA driver is 580. At the time of this writing, this is just `akmod-nvidia`, but it will be split `akmod-nvidia-580xx` very soon. Try installing that one first:
 
     sudo dnf install akmod-nvidia-580xx
 
