@@ -1,0 +1,9 @@
+{{- $src := .Get "src" -}}
+{{- $tmp := dict "Page" .Page "Destination" (.Get "src") -}}
+{{- $destination := partial "docs/links/portable-image" $tmp -}}
+{{- $attributes := partial "docs/text/mapper" (dict
+  "attributes" (cond .IsNamedParams .Params dict)
+  "keep" (slice "id" "class" "tabindex" "alt" "title" "loading")
+) -}}
+<img class="icon" src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }} />
+{{- /* remove whitespaces */ -}}

@@ -1,0 +1,26 @@
+{{- $src := .Get "src" -}}
+{{- $tmp := dict "Page" .Page "Destination" (.Get "src") -}}
+{{- $destination := partial "docs/links/portable-image" $tmp -}}
+{{- $attributes := partial "docs/text/mapper" (dict
+  "attributes" (cond .IsNamedParams .Params dict)
+  "keep" (slice "id" "class" "tabindex" "alt" "title" "loading")
+) -}}
+{{- if eq (.Get "zoom" | default "1") "1" -}}
+<label class="book-image" for="book-image-toggle-{{ .Ordinal }}">
+  <input class="hidden toggle" type="checkbox" id="book-image-toggle-{{ .Ordinal }}" />
+{{- end -}}
+  <img src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }}
+  {{- if (.Get "width") -}}
+  width="{{ (.Get "width") }}"
+  {{- else -}}
+  {{- with (.Page.Resources.Get $src ) -}}
+  {{- if reflect.IsImageResourceWithMeta . -}}
+   width="{{ (div .Width 1.5) }}"
+   height="{{ (div .Height 1.5) }}"
+  {{- end -}}
+  {{- end -}}
+  {{- end -}}
+  />
+{{- if (.Get "zoom" | default "1") -}}
+</label>
+{{- end -}}

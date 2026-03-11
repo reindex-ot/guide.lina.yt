@@ -1,0 +1,10 @@
+baseURL = 'https://guide.lina.yt/'
+languageCode = 'en-us'
+title = "Lina's Guide to Streaming on Fedora"
+theme = 'hugo-book'
+
+[markup]
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false
+[markup.goldmark.parser.attribute]
+block = true
